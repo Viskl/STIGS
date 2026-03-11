@@ -1,0 +1,31 @@
+<#
+.SYNOPSIS
+    This PowerShell script ensures that Windows 10 is configured to audit
+    Other Logon/Logoff Events Failures.
+.NOTES
+    Author          : Sebastian Chrzanowski
+    LinkedIn        : www.linkedin.com/in/sebastian-chrzanowski-75a8a41a4/
+    GitHub          : github.com/Viskl
+    Date Created    : 2025-03-11
+    Last Modified   : 2025-03-11
+    Version         : 1.0
+    CVEs            : N/A
+    Plugin IDs      : N/A
+    STIG-ID         : WN10-AU-000565
+.TESTED ON
+    Date(s) Tested  : 
+    Tested By       : 
+    Systems Tested  : 
+    PowerShell Ver. : 
+.USAGE
+    Run the script with administrator privileges.
+    Example syntax:
+    PS C:\> .\remediation_WN10-AU-000565.ps1
+#>
+
+# Enable Failure auditing for Other Logon/Logoff Events
+AuditPol /set /subcategory:"Other Logon/Logoff Events" /failure:enable
+
+# Verify the setting was applied
+Write-Host "Verification - Current Audit Policy for Other Logon/Logoff Events:"
+AuditPol /get /subcategory:"Other Logon/Logoff Events"
